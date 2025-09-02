@@ -35,9 +35,9 @@ import image from "../assets/image.png";
 export default function HeroAlternative() {
   return (
     <>
-      <div className="rounded-3xl overflow-hidden mt-[10rem] relative">
+      <div className=" overflow-hidden  relative mt-[60px] md:mt-0">
         <img
-          className="w-full h-80 md:h-96 object-cover"
+          className="w-[100%] m-auto h-80 md:h-96 object-cover"
           src={image}
           alt="hero image"
         />

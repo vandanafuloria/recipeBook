@@ -1,39 +1,38 @@
-import "./App.css";
-import React, { useEffect, useState } from "react";
-import RecipeBookHeader from "./components/RecipeBookHeader";
-import Hero from "./components/Hero";
+// App.jsx
+import { Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
 import Recipes from "./components/Recipes";
+import RecipeDetails from "./components/RecipeDetails";
+import Hero from "./components/Hero";
+import React, { useEffect, useState } from "react";
 
-function App() {
+export default function App() {
   const [recipes, setRecipes] = useState([]);
-  console.log(recipes);
 
   useEffect(() => {
-    getRecipe();
+    fetch("https://dummyjson.com/recipes") // your API URL
+      .then((res) => res.json())
+      .then((data) => setRecipes(data.recipes))
+      .catch((err) => console.error(err));
   }, []);
 
-  async function getRecipe() {
-    try {
-      const recipe = await fetch("https://dummyjson.com/recipes");
-      const data = await recipe.json();
-      console.log(data);
-      setRecipes(data.recipes);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   return (
-    <>
-      <div className="rounded-4xl w-[90%] m-auto">
-        <RecipeBookHeader />
-        <Hero />
-      </div>
-      <div>
-        <Recipes recipes={recipes} />
-      </div>
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route
+          index
+          element={
+            <>
+              <Hero />
+              <Recipes recipes={recipes} />
+            </>
+          }
+        />
+        <Route
+          path="recipes/:id"
+          element={<RecipeDetails recipes={recipes} />}
+        />
+      </Route>
+    </Routes>
   );
 }
-
-export default App;
