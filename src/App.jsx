@@ -2,6 +2,7 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 import RecipeBookHeader from "./components/RecipeBookHeader";
 import Hero from "./components/Hero";
+import Recipes from "./components/Recipes";
 
 function App() {
   const [recipes, setRecipes] = useState([]);
@@ -27,6 +28,9 @@ function App() {
       <div className="rounded-4xl w-[90%] m-auto">
         <RecipeBookHeader />
         <Hero />
+      </div>
+      <div>
+        <Recipes recipes={recipes} />
       </div>
     </>
   );
