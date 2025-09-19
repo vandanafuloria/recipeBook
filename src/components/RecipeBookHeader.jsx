@@ -5,7 +5,7 @@ const RecipeBookHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [searchFocused, setSearchFocused] = useState(false);
 
-  useEffect(() => {
+  useEffect(() => { // this is something new to me.
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
@@ -23,7 +23,9 @@ const RecipeBookHeader = () => {
     >
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo Section */}
+
+ {/***********************************************/}
+ 
           <div className="flex items-center space-x-3 group cursor-pointer">
             <div className="relative">
               <div
