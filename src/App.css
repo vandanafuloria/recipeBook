@@ -1,0 +1,14 @@
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+@media print {
+  img {
+    display: block !important;
+    visibility: visible !important;
+    max-width: 100% !important;
+  }
+}

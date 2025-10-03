@@ -16,6 +16,7 @@ export default function App() {
  
   <Routes>
     <Route  path="/" element={<Layout />}/>
+    <Route path="/recipes/:id"  element={<RecipeDetails />} />
 
   </Routes>
 

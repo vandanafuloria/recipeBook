@@ -4,9 +4,40 @@ import { Clock, Users, ChefHat, Star, ArrowLeft } from "lucide-react";
 
 export default function RecipeDetails() {
   const { id } = useParams();
+  console.log(id);
   const [recipe, setRecipe] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+// Printing of the recipe page by window.print() 
+  const handlePrint = () =>{
+
+    const img = document.getElementById("print");
+   
+    if (img.complete) {
+   
+    window.print();
+  } else {
+ 
+    img.onload = () => window.print();
+  }
+  }
+
+  // Sharing of the recipe page by  navigator.share, 
+
+const handleShare=  () => {
+if(navigator.share){
+  navigator.share({
+    title: "Recipe Book", 
+    text : `checkout this Recipe:  ${recipe}`,
+    url: window.location.href,
+  }).then( ()=> "Shared Successfully").catch((error)=> console.log(error));
+
+}else{
+  alert("This browser does not support sharing")
+}
+
+}
 
   useEffect(() => {
     if (!id) return;
@@ -30,6 +61,7 @@ export default function RecipeDetails() {
         setLoading(false);
       });
   }, [id]);
+
 
   if (loading) {
     return (
@@ -72,7 +104,8 @@ export default function RecipeDetails() {
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
       <div className="relative h-120 overflow-hidden">
-        <img
+        <img 
+        id="print"
           src={recipe.image}
           alt={recipe.name}
           className="w-full h-full object-cover"
@@ -253,10 +286,10 @@ export default function RecipeDetails() {
           <button className="bg-orange-500 hover:bg-orange-600 text-black px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/25">
             Save Recipe
           </button>
-          <button className="bg-gray-800 hover:bg-gray-700 text-white border border-gray-600 px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105">
+          <button onClick={handleShare} className="bg-gray-800 hover:bg-gray-700 text-white border border-gray-600 px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105">
             Share Recipe
           </button>
-          <button className="bg-gray-800 hover:bg-gray-700 text-white border border-gray-600 px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105">
+          <button  onClick={handlePrint} className="bg-gray-800 hover:bg-gray-700 text-white border border-gray-600 px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105">
             Print Recipe
           </button>
         </div>

@@ -57,11 +57,7 @@ export default function Recipes( ) {
           <div className="px-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 max-w-7xl mx-auto">
               {recipes.map((recipe) => (
-            <Link
-              key={recipe.id}
-              to={`/recipes/${recipe.id}`}
-              className="group"
-            >
+       
               <div className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group-hover:scale-[1.02]">
              
                 <div className="aspect-[4/3] overflow-hidden">
@@ -110,14 +106,20 @@ export default function Recipes( ) {
                       ))}
                     </div>
                   )}
+                <Link
+              key={recipe.id}
+              to={`/recipes/${recipe.id}`}
+              className="group"
+            >
                   <div className="mt-3">
-                    <button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
-                      Want to Try
+                    <button className=" w-full text-orange-600 border border-orange-600 hover:bg-orange-600 hover:text-white font-medium text-xs py-2 px-4 rounded-lg transition-colors duration-200">
+                        See Full Recipe
                     </button>
                   </div>
+                  </Link>
                 </div>
               </div>
-            </Link>
+           
           ))}
         </div>
 
